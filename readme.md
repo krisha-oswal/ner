@@ -1,6 +1,6 @@
 # Named Entity Linking (NEL) System
 
-A comprehensive Named Entity Linking system that detects entities in text and links them to Wikipedia knowledge base entries. Built for the DevifyX NLP Job Assignment.
+A comprehensive Named Entity Linking system that detects entities in text and links them to Wikipedia knowledge base entries. 
 
 ## Features
 
