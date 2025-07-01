@@ -270,10 +270,6 @@ logging.basicConfig(level=logging.DEBUG)
 1. Modify `_calculate_score()` in `EntityDisambiguator`
 2. Adjust weight factors
 
-## License
-
-This project is developed for the DevifyX NLP Job Assignment.
-
 ## Support
 
 For questions or issues:
