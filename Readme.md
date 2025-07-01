@@ -275,7 +275,7 @@ logging.basicConfig(level=logging.DEBUG)
 For questions or issues:
 - Check troubleshooting section
 - Review test cases for examples
-- Contact DevifyX recruitment team
+
 
 ---
 
