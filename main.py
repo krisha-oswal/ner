@@ -1,6 +1,5 @@
 """
 Named Entity Linking (NEL) System
-DevifyX NLP Job Assignment
 
 A comprehensive system for linking detected entities in text to Wikipedia knowledge base.
 Handles entity detection, candidate generation, disambiguation, and confidence scoring.
@@ -308,11 +307,13 @@ class NamedEntityLinker:
             linked_entity = self.disambiguator.disambiguate(entity, candidates)
             
             if linked_entity:
-                linked_entities.append(linked_entity)
-                logger.info(f"Linked '{entity.text}' to '{linked_entity.candidate.title}' "
-                          f"(confidence: {linked_entity.confidence:.3f})")
+             linked_entities.append(linked_entity)
+             logger.info(
+             f"Linked '{entity.text}' to '{linked_entity.candidate.title}' "
+             f"(confidence: {float(getattr(linked_entity, 'confidence', 0)):.3f})")
+
             else:
-                logger.info(f"Could not link entity '{entity.text}'")
+             logger.info(f"Could not link entity '{entity.text}'")
         
         return linked_entities
     
@@ -362,6 +363,16 @@ def save_results(results: Dict, filename: str):
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
 
+class NumPyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, (np.float32, np.float64)):
+            return float(obj)
+        if isinstance(obj, (np.int32, np.int64)):
+            return int(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super().default(obj)
+    
 # Example usage and testing
 if __name__ == "__main__":
     # Initialize the NEL system
@@ -380,7 +391,7 @@ if __name__ == "__main__":
     
     # Format and display results
     formatted_results = format_results(results)
-    print(json.dumps(formatted_results, indent=2))
+    print(json.dumps(formatted_results, indent=2, cls=NumPyEncoder))
     
     # Save results
     save_results(formatted_results, "sample_output.json")
