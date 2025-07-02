@@ -5,7 +5,7 @@ Flask-based UI for visualizing entity linking results
 
 from flask import Flask, render_template_string, request, jsonify
 import json
-from nel_system import NamedEntityLinker, format_results
+from main import NamedEntityLinker, format_results
 import logging
 
 # Configure logging
